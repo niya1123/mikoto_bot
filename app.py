@@ -1,4 +1,4 @@
-import discord, discord_token, asyncio, serifu, re
+import discord, discord_token, asyncio, serifu, re, random
 from datetime import datetime
 
 client = discord.Client() #botの起動に必要。
@@ -48,16 +48,20 @@ async def on_message(message):
     if message.content.startswith("<@!"):
         if client.user != message.author:
             if message.content.find("ビリビリ") != -1:
-                reply = select_normal_serifu(message.author.mention, "ビリビリ")
+                reply = select_normal_serifu(message.author.mention, serifu.normal_serifu["ビリビリ"])
             elif message.content.find("おはよう") != -1:
-                reply = select_normal_serifu(message.author.mention, "おはよう")
+                reply = select_normal_serifu(message.author.mention, serifu.normal_serifu["おはよう"])
             elif message.content.find("今何時") != -1:
                 reply = time_reply(message.author.mention)
+            elif message.content.find("デレて") != -1:
+                tmp = serifu.normal_serifu["デレ"]
+                random.shuffle(tmp)
+                reply = select_normal_serifu(message.author.mention, tmp[0])
             else:
                 reply = f'{message.author.mention} 何言ってるか分かんないわ'   
             await message.channel.send(reply)
 
-def select_normal_serifu(mention, key):
+def select_normal_serifu(mention, res):
     """
     決まり切った質問に対してのリプライをするもの。
 
@@ -69,7 +73,7 @@ def select_normal_serifu(mention, key):
     key: str
         serifu.pyのnormal_serifuという辞書のkey。    
     """
-    return f'{mention}{serifu.normal_serifu[key]}'
+    return f'{mention} {res}'
 
 def time_reply(mention):
     """
