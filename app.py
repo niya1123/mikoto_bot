@@ -1,6 +1,5 @@
-import discord, discord_token, asyncio
-
-
+import discord, discord_token, asyncio, serifu, re
+from datetime import datetime
 
 client = discord.Client() #botの起動に必要。
 
@@ -37,13 +36,32 @@ async def on_message(message):
         """
         await client.close()    
 
-    if client.user in client.users:
-        """
-        話しかけられたら返事をするのテンプレ。
-        """
+    # if client.user in client.users:
+    #     """
+    #     話しかけられたら返事をするのテンプレ。
+    #     """
+    #     if client.user != message.author:
+    #         print(message.content)
+    #         reply = f'{message.author.mention}呼んだ？'
+    #         await message.channel.send(reply)
+
+    if message.content.startswith("<@!"):
         if client.user != message.author:
-            reply = f'{message.author.mention}呼んだ？'
+            if message.content.find("ビリビリ") != -1:
+                reply = select_normal_serifu(message.author.mention, "ビリビリ")
+            elif message.content.find("おはよう") != -1:
+                reply = select_normal_serifu(message.author.mention, "おはよう")
+            elif message.content.find("今何時") != -1:
+                reply = time_reply(message.author.mention)
+            else:
+                reply = f'{message.author.mention} 何言ってるか分かんないわ'   
             await message.channel.send(reply)
+
+def select_normal_serifu(mention, key):
+    return f'{mention}{serifu.normal_serifu[key]}'
+
+def time_reply(mention):
+    return f'{mention} 今は、{datetime.now().strftime("%Y/%m/%d %H:%M:%S")}よ。'
 
 client.run(discord_token.token_id)
 
