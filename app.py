@@ -58,12 +58,32 @@ async def on_message(message):
             await message.channel.send(reply)
 
 def select_normal_serifu(mention, key):
+    """
+    決まり切った質問に対してのリプライをするもの。
+
+    parameters
+    ----------
+    mention: str
+        メッセージを送ってきた相手のuser_id。
+
+    key: str
+        serifu.pyのnormal_serifuという辞書のkey。    
+    """
     return f'{mention}{serifu.normal_serifu[key]}'
 
 def time_reply(mention):
+    """
+    時間を聞かれた時のリプライをするもの。
+
+    parameters
+    ----------
+    mention: str
+        メッセージを送ってきた相手のuser_id。
+
+    """
     return f'{mention} 今は、{datetime.now().strftime("%Y/%m/%d %H:%M:%S")}よ。'
 
-client.run(discord_token.token_id)
+client.run(discord_token.token_id) # botの起動。
 
 
 
