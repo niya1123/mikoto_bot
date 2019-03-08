@@ -9,9 +9,11 @@ autopep8 = "*"
 
 [packages]
 discord-py = {extras = ["voice"],file = "https://github.com/Rapptz/discord.py/archive/rewrite.zip"}
+mecab-python3 = "*"
 
 [scripts]
 start = "python app.py"
+mecab = "python generate_serifu.py"
 lint = "flake8 ."
 fix = "autopep8 -ivr ."
 

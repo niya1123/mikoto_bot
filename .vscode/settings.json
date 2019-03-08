@@ -1,3 +1,4 @@
 {
-    "python.linting.pylintEnabled": true
+    "python.linting.pylintEnabled": true,
+    "python.pythonPath": "/Users/niya/.local/share/virtualenvs/mikoto_bot-p1fqTSJR/bin/python"
 }

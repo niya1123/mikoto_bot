@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "656a514f5591924c956e7975112ea145a3d6468d17b59940ff38e135c9ca914e"
+            "sha256": "740b4f9bd5c0ed369d1e2c4c962f89a398e7c924eb5c75cd752e926bbecec2ed"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -21,6 +21,13 @@
                 "voice"
             ],
             "file": "https://github.com/Rapptz/discord.py/archive/rewrite.zip"
+        },
+        "mecab-python3": {
+            "hashes": [
+                "sha256:5aca4d0d196161e41452b89921042c0e61a6b7e7e9373211c0c1c50d1809055d"
+            ],
+            "index": "pypi",
+            "version": "==0.996.1"
         }
     },
     "develop": {

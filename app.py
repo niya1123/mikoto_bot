@@ -5,6 +5,7 @@ import serifu
 import re
 import random
 from datetime import datetime
+import generate_serifu
 
 client = discord.Client()  # botの起動に必要。
 
@@ -72,6 +73,9 @@ async def on_message(message):
                 random.shuffle(tmp)
                 reply = select_normal_serifu(message.author.mention, tmp[0])
 
+            elif message.content.find("セリフ") != -1:
+                reply = create_serifu(message.author.mention)
+
             else:
                 reply = f'{message.author.mention} 何言ってるか分かんないわ'
 
@@ -104,6 +108,10 @@ def time_reply(mention):
 
     """
     return f'{mention} 今は、{datetime.now().strftime("%Y/%m/%d %H:%M:%S")}よ。'
+
+
+def create_serifu(mention):
+    return f'{mention} {generate_serifu.main()}'
 
 
 client.run(discord_token.token_id)  # botの起動。
