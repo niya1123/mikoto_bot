@@ -1,9 +1,15 @@
-import discord, discord_token, asyncio, serifu, re, random
+import discord
+import discord_token
+import asyncio
+import serifu
+import re
+import random
 from datetime import datetime
 
-client = discord.Client() #botの起動に必要。
+client = discord.Client()  # botの起動に必要。
 
-channel = client.get_channel(discord_token.token_id) #channelの取得
+channel = client.get_channel(discord_token.token_id)  # channelの取得
+
 
 @client.event
 async def on_ready():
@@ -11,6 +17,7 @@ async def on_ready():
     ログイン時の通知。
     """
     print("ログインしました")
+
 
 @client.event
 async def on_message(message):
@@ -34,7 +41,7 @@ async def on_message(message):
         """
         botがログアウトする。
         """
-        await client.close()    
+        await client.close()
 
     # if client.user in client.users:
     #     """
@@ -46,27 +53,30 @@ async def on_message(message):
     #         await message.channel.send(reply)
 
     if message.content.startswith("<@!"):
-        
+
         if client.user != message.author:
-            
+
             if message.content.find("ビリビリ") != -1:
-                reply = select_normal_serifu(message.author.mention, serifu.normal_serifu["ビリビリ"])
-            
+                reply = select_normal_serifu(
+                    message.author.mention, serifu.normal_serifu["ビリビリ"])
+
             elif message.content.find("おはよう") != -1:
-                reply = select_normal_serifu(message.author.mention, serifu.normal_serifu["おはよう"])
-            
+                reply = select_normal_serifu(
+                    message.author.mention, serifu.normal_serifu["おはよう"])
+
             elif message.content.find("今何時") != -1:
                 reply = time_reply(message.author.mention)
-            
+
             elif message.content.find("デレて") != -1:
                 tmp = serifu.normal_serifu["デレ"]
                 random.shuffle(tmp)
                 reply = select_normal_serifu(message.author.mention, tmp[0])
-            
+
             else:
-                reply = f'{message.author.mention} 何言ってるか分かんないわ'   
-            
+                reply = f'{message.author.mention} 何言ってるか分かんないわ'
+
             await message.channel.send(reply)
+
 
 def select_normal_serifu(mention, res):
     """
@@ -82,6 +92,7 @@ def select_normal_serifu(mention, res):
     """
     return f'{mention} {res}'
 
+
 def time_reply(mention):
     """
     時間を聞かれた時のリプライをするもの。
@@ -94,8 +105,5 @@ def time_reply(mention):
     """
     return f'{mention} 今は、{datetime.now().strftime("%Y/%m/%d %H:%M:%S")}よ。'
 
-client.run(discord_token.token_id) # botの起動。
 
-
-
-        
+client.run(discord_token.token_id)  # botの起動。
