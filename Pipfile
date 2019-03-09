@@ -10,6 +10,7 @@ autopep8 = "*"
 [packages]
 discord-py = {extras = ["voice"],file = "https://github.com/Rapptz/discord.py/archive/rewrite.zip"}
 mecab-python3 = "*"
+numpy = "*"
 
 [scripts]
 start = "python app.py"

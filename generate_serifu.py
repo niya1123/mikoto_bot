@@ -14,9 +14,14 @@ def wakati():
     # """
     with open('serifu.txt', 'r') as f:
         text = f.read()
+    print(text)
     t = MeCab.Tagger("-Owakati")
     m = t.parse(text)
     result = m.rstrip(" \n").split(" ")
+    for r in result:
+        if r == "\u3000":
+            result.remove(r)
+    print(result)
     return result
 
 
@@ -29,6 +34,7 @@ def create_serifu(wordlist):
     w5 = ""
     w6 = ""
     endword = ["。", "？", "！", "…"]
+    # continuedword = ["ー","〜","、"]
 
     for word in wordlist:
         if w1 and w2 and w3 and w4 and w5 and w6:
@@ -39,7 +45,8 @@ def create_serifu(wordlist):
 
     count = 0
     sentence = ""
-    w1, w2, w3, w4, w5, w6 = random.choice(list(markov.keys()))
+    word_list = list(markov.keys())
+    w1, w2, w3, w4, w5, w6 = random.choice(word_list)
 
     while count < len(wordlist):
         tmp = random.choice(markov[w1, w2, w3, w4, w5, w6])
@@ -49,7 +56,7 @@ def create_serifu(wordlist):
         sentence += tmp
         w1, w2, w3, w4, w5, w6 = w2, w3, w4, w5, w6, tmp
         count += 1
-        if count > 30:
+        if count > 1000:
             break
     return sentence
 
@@ -57,5 +64,6 @@ def create_serifu(wordlist):
 def main():
     wordlist = wakati()
     serifu = create_serifu(wordlist)
+    print(serifu)
 
     return serifu
