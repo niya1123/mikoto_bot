@@ -1,11 +1,11 @@
-import discord
-import discord_token
-import asyncio
-import serifu
-import re
 import random
 from datetime import datetime
+
+import discord
+
+import discord_token
 import generate_serifu
+import serifu
 
 client = discord.Client()  # botの起動に必要。
 

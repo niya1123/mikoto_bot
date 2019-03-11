@@ -3,6 +3,9 @@ import random
 
 
 def wakati():
+    """
+    Mecabを用いた形態素解析。
+    """
 
     # text = """
     # ごめぇーんまったぁ〜？まったって言ってんでしょ！無視すんなやゴッラァー
@@ -26,6 +29,14 @@ def wakati():
 
 
 def create_serifu(wordlist):
+    """
+     ６連マルコフ連鎖。
+
+     parametaers
+     -----------
+     wordlist: list
+        wakatiで形態素解析された単語のリスト。
+    """
     markov = {}
     w1 = ""
     w2 = ""
@@ -62,6 +73,9 @@ def create_serifu(wordlist):
 
 
 def main():
+    """
+    main関数。wakatiと、create_serifuのオブジェクトの生成をしている。
+    """
     wordlist = wakati()
     serifu = create_serifu(wordlist)
     print(serifu)
