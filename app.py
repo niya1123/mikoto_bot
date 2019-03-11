@@ -92,7 +92,7 @@ def select_normal_serifu(mention, res):
         メッセージを送ってきた相手のuser_id。
 
     key: str
-        serifu.pyのnormal_serifuという辞書のkey。    
+        serifu.pyのnormal_serifuという辞書のkey。
     """
     return f'{mention} {res}'
 
