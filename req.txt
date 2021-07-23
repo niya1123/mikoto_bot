@@ -1,0 +1,15 @@
+aiohttp==3.7.4.post0
+async-timeout==3.0.1
+attrs==21.2.0
+chardet==4.0.0
+discord==1.7.3
+discord.py==1.7.3
+ez-setup==0.9
+idna==3.2
+mccabe==0.6.1
+mecab-python3==1.0.4
+multidict==5.1.0
+numpy==1.21.1
+typing-extensions==3.10.0.0
+unidic-lite==1.0.8
+yarl==1.6.3
